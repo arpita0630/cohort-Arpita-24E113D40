@@ -1,5 +1,12 @@
+require("dotenv").config();
+const cors = require("cors");
+const db = require("../models/connections.js");
+const { initDatabase } = require("../controllers/initDb.js");
+initDatabase();
 const  express = require("express");
 const app = express();
+app.use(cors());
+app.use(express.json());
 const PORT = 3000;
 app.get('/', (req, res) => {
     res.status(200).json({
@@ -25,9 +32,9 @@ app.post('/user', async(req, res) => {
       const { username, registration_no, email, password,age} = req.body;
         const insertUserQuery = `INSERT INTO users (username, registration_no, email, password, age) VALUES ($1, $2, $3, $4, $5) RETURNING *`;
         try{
-            const result = await db.query(createUserQuery, [
+            const result = await db.query(insertUserQuery, [
             username,
-            regustration_no,
+            registration_no,
             email,
             password,
             age
@@ -61,7 +68,7 @@ app.patch('/profile', async(req, res) => {
         ]);
         res.status(200).json(result.rows[0]);
    
- 
+
 
     const { username, email, age } = req.body;
     const updateUserQuery = `UPDATE users SET email = $1, age = $2 WHERE username = $3 RETURNING *`;
