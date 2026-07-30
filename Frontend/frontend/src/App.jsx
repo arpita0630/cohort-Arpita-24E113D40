@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import DataForm from "./components/form";
 
-const App = () => {
+function App() {
   return (
-    <div>App</div>
-  )
+    <div>
+      <DataForm />
+    </div>
+  );
 }
 
-export default App
+export default App;
