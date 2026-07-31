@@ -108,13 +108,12 @@ const handleSubmit = async (e) => {
     )}
     {page === "register" && (
       <div>
-        {/* your existing registration form goes here */}
+    
       </div>
     )}
     {page === "login" && (
       <div>
-        {/* login form goes here */}
-        {/* on success → setUser(response.data) then setPage("profile") */}
+       
       </div>
     )}
     {page === "profile" && (
